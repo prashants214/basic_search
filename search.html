@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City and Area Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .search-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .search-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .search-field {
+            margin-bottom: 15px;
+        }
+
+        .search-field select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            appearance: none;
+            background-color: #fff;
+        }
+
+        .search-field select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .search-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <h2>Search</h2>
+    <form action="#" method="get">
+        <div class="search-field">
+            <select name="city" id="city" onchange="updateArea()">
+                <option value="">Select City</option>
+                <option value="bengaluru">Bengaluru</option>
+                <option value="hyderabad">Hyderabad</option>
+                <option value="chennai">Chennai</option>
+            </select>
+        </div>
+        <div class="search-field">
+            <select name="area" id="area">
+                <option value="">Select Area</option>
+            </select>
+        </div>
+        <div class="search-field">
+            <select name="search3">
+                <option value="">Select Option 3</option>
+                <option value="option3-1">Option 3-1</option>
+                <option value="option3-2">Option 3-2</option>
+                <option value="option3-3">Option 3-3</option>
+            </select>
+        </div>
+        <button type="submit" class="search-button">Search</button>
+    </form>
+</div>
+
+<script>
+    function updateArea() {
+        const city = document.getElementById("city").value;
+        const area = document.getElementById("area");
+
+        // Clear existing options
+        area.innerHTML = '<option value="">Select Area</option>';
+
+        // Define areas based on selected city
+        const areas = {
+            bengaluru: ['Jayanagar', 'JP Nagar', 'Koramangala'],
+            hyderabad: ['Ameerpet', 'Sanathnagar', 'Khairatabad'],
+            chennai: ['Anna Nagar', 'Mylapore', 'Teynampet']
+        };
+
+        // Add new options based on selected city
+        if (city in areas) {
+            areas[city].forEach(function(areaName) {
+                const option = document.createElement("option");
+                option.value = areaName.toLowerCase().replace(/ /g, "-");
+                option.text = areaName;
+                area.add(option);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
